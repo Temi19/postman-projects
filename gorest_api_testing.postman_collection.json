@@ -1,0 +1,1545 @@
+{
+	"info": {
+		"_postman_id": "a15df0d1-a620-4fdb-95f7-7ee52c2ec3e8",
+		"name": "gorest_api_testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create_user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name1}}",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "{{genderMale}}",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "{{statusActive}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_user_by_id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check user name by his id\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"getID = pm.variables.id.includes(\"3930\");\r",
+							"\r",
+							"pm.test(\"Check if user Petr has his right ID\", function () {\r",
+							"    if(pm.expect(pm.response.text()).to.include(\"Kai\") == true){\r",
+							"        console.log(getID);\r",
+							"    };\r",
+							"});\r",
+							"\r",
+							"const responseJson = pm.response.json();\r",
+							"pm.globals.set(\"expectedResponse\", responseJson);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/users?id={{kaiID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{kaiID}}",
+							"description": "An id of user Kai"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get_user_by_id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users?id={{kaiID}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{kaiID}}",
+									"description": "An id of user Kai"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 May 2022 11:53:46 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Total",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Pages",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Page",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Limit",
+							"value": "20"
+						},
+						{
+							"key": "X-Links-Previous",
+							"value": ""
+						},
+						{
+							"key": "X-Links-Current",
+							"value": "https://gorest.co.in/public/v2/users?page=1"
+						},
+						{
+							"key": "X-Links-Next",
+							"value": ""
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"854135b0cd56ad959a7f2cdc627314c9\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "5f3e457d-fe13-4e8f-bd3a-26a3abe6454a"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.022344"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 4298,\n        \"name\": \"Kai\",\n        \"email\": \"test789@email.com\",\n        \"gender\": \"male\",\n        \"status\": \"active\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "change_current_user_name",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name2}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/:KaiID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						":KaiID"
+					],
+					"variable": [
+						{
+							"key": "KaiID",
+							"value": "{{kaiID}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "change_current_user_name",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{name2}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/:KaiID",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								":KaiID"
+							],
+							"variable": [
+								{
+									"key": "KaiID",
+									"value": "{{kaiID}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 May 2022 11:54:07 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f5a4f88d6237847ff6bd40f59f5c57bd\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "4252b01c-ae03-4b22-b118-f0eeff5299a3"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.030315"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Ladislav\",\n    \"id\": 4298,\n    \"email\": \"test789@email.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get_user_with_new_name_by_id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response shouldn't be the same\", () => {\r",
+							"    const response1 = pm.response.json();\r",
+							"    const response2 = pm.globals.get(\"expectedResponse\");\r",
+							"    pm.expect(response2).is.not.eql(response1);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseURL}}/users?id={{kaiID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{kaiID}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get_user_with_new_name_by_id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/users?id={{kaiID}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{kaiID}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 May 2022 11:55:10 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Total",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Pages",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Page",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Limit",
+							"value": "20"
+						},
+						{
+							"key": "X-Links-Previous",
+							"value": ""
+						},
+						{
+							"key": "X-Links-Current",
+							"value": "https://gorest.co.in/public/v2/users?page=1"
+						},
+						{
+							"key": "X-Links-Next",
+							"value": ""
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3eed633ccf30fc407b55c61f0b97537e\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "eb1a633e-6fe8-4b9a-ab40-2701de34521d"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.027259"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 4298,\n        \"name\": \"Ladislav\",\n        \"email\": \"test789@email.com\",\n        \"gender\": \"male\",\n        \"status\": \"active\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "delete_user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/{{kaiID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{kaiID}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete_user",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/{{kaiID}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"{{kaiID}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 May 2022 11:55:51 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "4d5cb921-b591-4812-ba18-ee375de163e7"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.037859"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "check_if_user_is_deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const newResponseJson = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check if user does not exist\",()=>{\r",
+							"    pm.expect(newResponseJson).not.to.have.property(\"Ladislav\");\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/users?name={{name2}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name2}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "check_if_user_is_deleted",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users?name={{name2}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{name2}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 May 2022 11:56:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Total",
+							"value": "0"
+						},
+						{
+							"key": "X-Pagination-Pages",
+							"value": "0"
+						},
+						{
+							"key": "X-Pagination-Page",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Limit",
+							"value": "20"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4f53cda18c2baa0c0354bb5f9a3ecbe5\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "906caaf3-3a51-44ea-a7c2-487d1c986c7a"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.033020"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "[]"
+				}
+			]
+		},
+		{
+			"name": "add_comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{nameInComments1}}",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{emailComments1}}",
+							"type": "text"
+						},
+						{
+							"key": "body",
+							"value": "{{bodyComments1}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/posts/100/comments",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts",
+						"100",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check_if_user_added_comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"responseJSON = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check if body contains any comment\", ()=>{\r",
+							"    pm.expect(responseJSON.body).to.not.equal(\"\")\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseURL}}/posts/100/comments",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts",
+						"100",
+						"comments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "check_if_user_added_comment",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/posts/100/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"posts",
+								"100",
+								"comments"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 May 2022 12:34:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Total",
+							"value": "4"
+						},
+						{
+							"key": "X-Pagination-Pages",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Page",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Limit",
+							"value": "20"
+						},
+						{
+							"key": "X-Links-Previous",
+							"value": ""
+						},
+						{
+							"key": "X-Links-Current",
+							"value": "https://gorest.co.in/public/v2/comments?page=1"
+						},
+						{
+							"key": "X-Links-Next",
+							"value": "https://gorest.co.in/public/v2/comments?page=2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d7358e51d158f508088c5cce421a806c\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_gorest_session=xhZlU4P8y8AkdVgr%2BJ0s7ejYjP0HkcnAktg6meq8fcTeO94dGsf5VjaxWG4z%2Fb2mGIyZNxvyOf%2FnoOPgk1HivUd6SgqSRDhN21ZA9oqVrwL4B0naerMRip3CvGDylShYKLbD10yk2iPXymjBXahGQfU6hslF4hj8YX6Od0OLU9UKANc4tZTpmRwAMh02UOGLxjpPGmy9QxIJKS1%2F2Bw%2Bv2HzxA5%2Ff2561JfyJypr4snYaB2MLGR1MRz9%2FplXckQJHNmXo%2B5iApqIcEnAoSY3A1PUCzlqGW8%3D--onpDcgbvFnouRCjj--EuMB6df7nukxaJ4RcYjugQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "ddfd55e5-5a33-483c-830c-8ea2cf05b1af"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.022275"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1380,\n        \"post_id\": 100,\n        \"name\": \"Christopher Juul\",\n        \"email\": \"christopher_juul86@email.com\",\n        \"body\": \"it was always there, before people lived and named it, before the first seed sprouted\"\n    },\n    {\n        \"id\": 1379,\n        \"post_id\": 100,\n        \"name\": \"Christopher Juul\",\n        \"email\": \"christopher_juul86@email.com\",\n        \"body\": \"it was always there, before people lived and named it, before the first seed sprouted\"\n    },\n    {\n        \"id\": 1378,\n        \"post_id\": 100,\n        \"name\": \"Christopher Juul\",\n        \"email\": \"christopher_juul86@emai.com\",\n        \"body\": \"it was always there, before people lived and named it, before the first seed sprouted\"\n    },\n    {\n        \"id\": 90,\n        \"post_id\": 100,\n        \"name\": \"Achyut Kocchar\",\n        \"email\": \"kocchar_achyut@halvorson.net\",\n        \"body\": \"Quasi maiores facilis. Et temporibus ad. Fuga vel commodi. Adipisci odit neque.\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "delete_all_comments",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseURL}}/posts/100?id={{commentID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts",
+						"100"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{commentID}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete_all_comments",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/posts/100?id={{commentID}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"posts",
+								"100"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{commentID}}"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 May 2022 12:47:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_gorest_session=mblndl18TxjpyMFhAwvOIXzWKNTCxCp7CadFnPHPOCi%2BtnWtKK9dIvOuMCG1ap7eP8SF9POpY5Bvqp%2BSG2r9tc4pxj4n2jQCJLUI7%2BNXuUOzp7BKsv%2FMKnsPOFS09%2F%2FlKDJ0k%2BkZXj919cmA1cdmDDsHNTpmnTn4vPxpPheyYjATzHoHriNBfN27e0kwH5qH5S3DhRVghbNW0%2FAQwLPHSOlavQlv8Tk09FpdNAsKCNP6cC6m2pd2qvsM5kP%2FWy54QkNOPTI%2F74uhI5V6auIq6KtKvyt%2Bhxk%3D--b16sVjroXWZNCitW--%2FRr1SF75Hmet9xtC5y4NSg%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "06f049d2-ea2c-4e51-9527-46d54aa44dfd"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.055288"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "check_if_deleted_all_comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const newResponseJson1 = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check if user does not exist\",()=>{\r",
+							"    pm.expect(newResponseJson1).not.to.have.property(\"christopher_juul86@email.com\");\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseURL}}/posts/100",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts",
+						"100"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "check_if_deleted_all_comments",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/posts/100",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"posts",
+								"100"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 18 May 2022 12:54:05 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_gorest_session=KiAH5gbKB5XuEA4%2BbbeOZkJ5KILaLoqcKaj0ENVCYXlncyKLiH3zAL88pROcxsHpZHCquX9yTKSFZrjoi457BpsDq5JLaHJjBbmluvky4dDCSypcyvKc9o1Ix5Yfigf09YAPerAnPar2DjM2bV1v4wkEWsZO9aVDkWv9qoYxtt1ke7CXaD9l4zXvdCygt83bGP84QiquiYWwhCFTqSyvYTD%2FGtoM%2FbIgo01zTZ8wqovmyWG0EczdM%2BmehuX8kkJM7%2FfAQd1%2BCq4PC7uuk9352jqoclFyev4%3D--BqyBmEOR6HUH6%2F4W--naIEK%2Bb6%2F5hhuLuUyxc8PQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "5786873f-0503-40f5-82e9-41846791dc5f"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.027116"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Resource not found\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "d478057fe9d209bb14f80d158787d3ffea202a4340ce2478446763e674456b01",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "name1",
+			"value": "Kai",
+			"type": "string"
+		},
+		{
+			"key": "name2",
+			"value": "Ladislav",
+			"type": "string"
+		},
+		{
+			"key": "kaiID",
+			"value": "4298",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "test789@email.com",
+			"type": "string"
+		},
+		{
+			"key": "genderMale",
+			"value": "male",
+			"type": "string"
+		},
+		{
+			"key": "genderFemale",
+			"value": "female",
+			"type": "string"
+		},
+		{
+			"key": "statusActive",
+			"value": "active",
+			"type": "string"
+		},
+		{
+			"key": "statusInactive",
+			"value": "inactive",
+			"type": "string"
+		},
+		{
+			"key": "baseURL",
+			"value": "https://gorest.co.in/public/v2"
+		},
+		{
+			"key": "nameInComments1",
+			"value": "Christopher Juul",
+			"type": "string"
+		},
+		{
+			"key": "emailComments1",
+			"value": "christopher_juul86@email.com",
+			"type": "string"
+		},
+		{
+			"key": "bodyComments1",
+			"value": "it was always there, before people lived and named it, before the first seed sprouted.",
+			"type": "string"
+		},
+		{
+			"key": "commentID",
+			"value": "1380",
+			"type": "string"
+		},
+		{
+			"key": "postCommentID",
+			"value": "100",
+			"type": "string"
+		}
+	]
+}
