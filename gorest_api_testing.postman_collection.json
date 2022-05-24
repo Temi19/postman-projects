@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "a15df0d1-a620-4fdb-95f7-7ee52c2ec3e8",
 		"name": "gorest_api_testing",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21017287"
 	},
 	"item": [
 		{
@@ -56,7 +57,145 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "create_user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{name1}}",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "{{genderMale}}",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "{{statusActive}}",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "{{kaiID}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 24 May 2022 07:17:30 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/users/5050"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d206b8b1ca6d391f3c9b1a6b27e10ac8\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "9be0c80c-cfbb-4b03-9826-f9691e0dd575"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.023817"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 5050,\n    \"name\": \"Kai\",\n    \"email\": \"test7899@email.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}"
+				}
+			]
 		},
 		{
 			"name": "get_user_by_id",
@@ -65,13 +204,13 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Check user name by his id\", function() {\r",
+							"pm.test(\"Check user name by his id\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"getID = pm.variables.id.includes(\"3930\");\r",
+							"getID = pm.variables.id.includes(\"5050\");\r",
 							"\r",
-							"pm.test(\"Check if user Petr has his right ID\", function () {\r",
+							"pm.test(\"Check if user Ladislav has his right ID\", function () {\r",
 							"    if(pm.expect(pm.response.text()).to.include(\"Kai\") == true){\r",
 							"        console.log(getID);\r",
 							"    };\r",
@@ -84,9 +223,16 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
 				"url": {
 					"raw": "{{baseURL}}/users?id={{kaiID}}",
 					"host": [
@@ -110,6 +256,10 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
 						"url": {
 							"raw": "{{baseURL}}/users?id={{kaiID}}",
 							"host": [
@@ -137,7 +287,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 18 May 2022 11:53:46 GMT"
+							"value": "Tue, 24 May 2022 07:18:59 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -225,7 +375,7 @@
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"854135b0cd56ad959a7f2cdc627314c9\""
+							"value": "W/\"33e885c36581b9295b0a58e054cec519\""
 						},
 						{
 							"key": "Cache-Control",
@@ -233,11 +383,11 @@
 						},
 						{
 							"key": "X-Request-Id",
-							"value": "5f3e457d-fe13-4e8f-bd3a-26a3abe6454a"
+							"value": "b2b70f42-c4e0-4904-a14a-cb2b23cbdd57"
 						},
 						{
 							"key": "X-Runtime",
-							"value": "0.022344"
+							"value": "0.022284"
 						},
 						{
 							"key": "Strict-Transport-Security",
@@ -249,7 +399,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 4298,\n        \"name\": \"Kai\",\n        \"email\": \"test789@email.com\",\n        \"gender\": \"male\",\n        \"status\": \"active\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": 5050,\n        \"name\": \"Kai\",\n        \"email\": \"test7899@email.com\",\n        \"gender\": \"male\",\n        \"status\": \"active\"\n    }\n]"
 				}
 			]
 		},
@@ -328,7 +478,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 18 May 2022 11:54:07 GMT"
+							"value": "Tue, 24 May 2022 07:21:03 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -388,7 +538,7 @@
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"f5a4f88d6237847ff6bd40f59f5c57bd\""
+							"value": "W/\"c9eec3bfc4849a6dc6516afbb4df4d90\""
 						},
 						{
 							"key": "Cache-Control",
@@ -396,11 +546,11 @@
 						},
 						{
 							"key": "X-Request-Id",
-							"value": "4252b01c-ae03-4b22-b118-f0eeff5299a3"
+							"value": "ecafd5a8-22e4-4940-a0c6-80c20d1be86b"
 						},
 						{
 							"key": "X-Runtime",
-							"value": "0.030315"
+							"value": "0.022920"
 						},
 						{
 							"key": "Strict-Transport-Security",
@@ -412,7 +562,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"name\": \"Ladislav\",\n    \"id\": 4298,\n    \"email\": \"test789@email.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}"
+					"body": "{\n    \"name\": \"Ladislav\",\n    \"id\": 5050,\n    \"email\": \"test7899@email.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}"
 				}
 			]
 		},
@@ -497,7 +647,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 18 May 2022 11:55:10 GMT"
+							"value": "Tue, 24 May 2022 07:24:58 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -585,7 +735,7 @@
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"3eed633ccf30fc407b55c61f0b97537e\""
+							"value": "W/\"0d8eb16d8a6be55a7a1c010fa03ec009\""
 						},
 						{
 							"key": "Cache-Control",
@@ -593,11 +743,11 @@
 						},
 						{
 							"key": "X-Request-Id",
-							"value": "eb1a633e-6fe8-4b9a-ab40-2701de34521d"
+							"value": "4c17c848-20c5-484e-aaf0-6cefbbdf9bdb"
 						},
 						{
 							"key": "X-Runtime",
-							"value": "0.027259"
+							"value": "0.020438"
 						},
 						{
 							"key": "Strict-Transport-Security",
@@ -609,7 +759,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 4298,\n        \"name\": \"Ladislav\",\n        \"email\": \"test789@email.com\",\n        \"gender\": \"male\",\n        \"status\": \"active\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": 5050,\n        \"name\": \"Ladislav\",\n        \"email\": \"test7899@email.com\",\n        \"gender\": \"male\",\n        \"status\": \"active\"\n    }\n]"
 				}
 			]
 		},
@@ -619,22 +769,17 @@
 				"method": "DELETE",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"mode": "formdata",
+					"formdata": []
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/{{kaiID}}",
+					"raw": "{{baseURL}}/users/5046",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
-						"{{kaiID}}"
+						"5046"
 					]
 				}
 			},
@@ -645,22 +790,17 @@
 						"method": "DELETE",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"mode": "formdata",
+							"formdata": []
 						},
 						"url": {
-							"raw": "{{baseURL}}/users/{{kaiID}}",
+							"raw": "{{baseURL}}/users/5046",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"users",
-								"{{kaiID}}"
+								"5046"
 							]
 						}
 					},
@@ -674,7 +814,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 18 May 2022 11:55:51 GMT"
+							"value": "Tue, 24 May 2022 07:31:24 GMT"
 						},
 						{
 							"key": "Connection",
@@ -722,11 +862,11 @@
 						},
 						{
 							"key": "X-Request-Id",
-							"value": "4d5cb921-b591-4812-ba18-ee375de163e7"
+							"value": "ed58be23-c20d-45fb-8642-d19274ed7a4a"
 						},
 						{
 							"key": "X-Runtime",
-							"value": "0.037859"
+							"value": "0.022988"
 						},
 						{
 							"key": "Strict-Transport-Security",
@@ -752,7 +892,7 @@
 							"const newResponseJson = pm.response.json();\r",
 							"\r",
 							"pm.test(\"Check if user does not exist\",()=>{\r",
-							"    pm.expect(newResponseJson).not.to.have.property(\"Ladislav\");\r",
+							"    pm.expect(newResponseJson).not.to.have.property(\"Kai\");\r",
 							"})\r",
 							""
 						],
@@ -764,7 +904,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/users?name={{name2}}",
+					"raw": "{{baseURL}}/users?name={{name1}}",
 					"host": [
 						"{{baseURL}}"
 					],
@@ -774,7 +914,7 @@
 					"query": [
 						{
 							"key": "name",
-							"value": "{{name2}}"
+							"value": "{{name1}}"
 						}
 					]
 				}
@@ -786,7 +926,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/users?name={{name2}}",
+							"raw": "{{baseURL}}/users?name={{name1}}",
 							"host": [
 								"{{baseURL}}"
 							],
@@ -796,7 +936,7 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "{{name2}}"
+									"value": "{{name1}}"
 								}
 							]
 						}
@@ -811,223 +951,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 18 May 2022 11:56:11 GMT"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json; charset=utf-8"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "0"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "X-Download-Options",
-							"value": "noopen"
-						},
-						{
-							"key": "X-Permitted-Cross-Domain-Policies",
-							"value": "none"
-						},
-						{
-							"key": "Referrer-Policy",
-							"value": "strict-origin-when-cross-origin"
-						},
-						{
-							"key": "X-RateLimit-Limit",
-							"value": "90"
-						},
-						{
-							"key": "X-RateLimit-Remaining",
-							"value": "89"
-						},
-						{
-							"key": "X-RateLimit-Reset",
-							"value": "1"
-						},
-						{
-							"key": "X-Pagination-Total",
-							"value": "0"
-						},
-						{
-							"key": "X-Pagination-Pages",
-							"value": "0"
-						},
-						{
-							"key": "X-Pagination-Page",
-							"value": "1"
-						},
-						{
-							"key": "X-Pagination-Limit",
-							"value": "20"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"4f53cda18c2baa0c0354bb5f9a3ecbe5\""
-						},
-						{
-							"key": "Cache-Control",
-							"value": "max-age=0, private, must-revalidate"
-						},
-						{
-							"key": "X-Request-Id",
-							"value": "906caaf3-3a51-44ea-a7c2-487d1c986c7a"
-						},
-						{
-							"key": "X-Runtime",
-							"value": "0.033020"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=63072000; includeSubDomains"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						}
-					],
-					"cookie": [],
-					"body": "[]"
-				}
-			]
-		},
-		{
-			"name": "add_comment",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "{{nameInComments1}}",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "{{emailComments1}}",
-							"type": "text"
-						},
-						{
-							"key": "body",
-							"value": "{{bodyComments1}}",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{baseURL}}/posts/100/comments",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"posts",
-						"100",
-						"comments"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "check_if_user_added_comment",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"responseJSON = pm.response.json();\r",
-							"\r",
-							"pm.test(\"Check if body contains any comment\", ()=>{\r",
-							"    pm.expect(responseJSON.body).to.not.equal(\"\")\r",
-							"})\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{baseURL}}/posts/100/comments",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"posts",
-						"100",
-						"comments"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "check_if_user_added_comment",
-					"originalRequest": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "{{baseURL}}/posts/100/comments",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"posts",
-								"100",
-								"comments"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Server",
-							"value": "nginx"
-						},
-						{
-							"key": "Date",
-							"value": "Wed, 18 May 2022 12:34:51 GMT"
+							"value": "Tue, 24 May 2022 07:32:05 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -1107,31 +1031,27 @@
 						},
 						{
 							"key": "X-Links-Current",
-							"value": "https://gorest.co.in/public/v2/comments?page=1"
+							"value": "https://gorest.co.in/public/v2/users?page=1"
 						},
 						{
 							"key": "X-Links-Next",
-							"value": "https://gorest.co.in/public/v2/comments?page=2"
+							"value": "https://gorest.co.in/public/v2/users?page=2"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"d7358e51d158f508088c5cce421a806c\""
+							"value": "W/\"98825cce2313374667f3a67193fcd84d\""
 						},
 						{
 							"key": "Cache-Control",
 							"value": "max-age=0, private, must-revalidate"
 						},
 						{
-							"key": "Set-Cookie",
-							"value": "_gorest_session=xhZlU4P8y8AkdVgr%2BJ0s7ejYjP0HkcnAktg6meq8fcTeO94dGsf5VjaxWG4z%2Fb2mGIyZNxvyOf%2FnoOPgk1HivUd6SgqSRDhN21ZA9oqVrwL4B0naerMRip3CvGDylShYKLbD10yk2iPXymjBXahGQfU6hslF4hj8YX6Od0OLU9UKANc4tZTpmRwAMh02UOGLxjpPGmy9QxIJKS1%2F2Bw%2Bv2HzxA5%2Ff2561JfyJypr4snYaB2MLGR1MRz9%2FplXckQJHNmXo%2B5iApqIcEnAoSY3A1PUCzlqGW8%3D--onpDcgbvFnouRCjj--EuMB6df7nukxaJ4RcYjugQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
-						},
-						{
 							"key": "X-Request-Id",
-							"value": "ddfd55e5-5a33-483c-830c-8ea2cf05b1af"
+							"value": "b33d00f5-b8dd-4d76-be13-25551bfeba3c"
 						},
 						{
 							"key": "X-Runtime",
-							"value": "0.022275"
+							"value": "0.027158"
 						},
 						{
 							"key": "Strict-Transport-Security",
@@ -1143,7 +1063,701 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1380,\n        \"post_id\": 100,\n        \"name\": \"Christopher Juul\",\n        \"email\": \"christopher_juul86@email.com\",\n        \"body\": \"it was always there, before people lived and named it, before the first seed sprouted\"\n    },\n    {\n        \"id\": 1379,\n        \"post_id\": 100,\n        \"name\": \"Christopher Juul\",\n        \"email\": \"christopher_juul86@email.com\",\n        \"body\": \"it was always there, before people lived and named it, before the first seed sprouted\"\n    },\n    {\n        \"id\": 1378,\n        \"post_id\": 100,\n        \"name\": \"Christopher Juul\",\n        \"email\": \"christopher_juul86@emai.com\",\n        \"body\": \"it was always there, before people lived and named it, before the first seed sprouted\"\n    },\n    {\n        \"id\": 90,\n        \"post_id\": 100,\n        \"name\": \"Achyut Kocchar\",\n        \"email\": \"kocchar_achyut@halvorson.net\",\n        \"body\": \"Quasi maiores facilis. Et temporibus ad. Fuga vel commodi. Adipisci odit neque.\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": 2124,\n        \"name\": \"Kailash Pillai\",\n        \"email\": \"pillai_kailash@king-dietrich.co\",\n        \"gender\": \"female\",\n        \"status\": \"inactive\"\n    },\n    {\n        \"id\": 1489,\n        \"name\": \"Dr. Kailash Somayaji\",\n        \"email\": \"kailash_somayaji_dr@daugherty-botsford.name\",\n        \"gender\": \"male\",\n        \"status\": \"active\"\n    },\n    {\n        \"id\": 227,\n        \"name\": \"Kailash Gupta DO\",\n        \"email\": \"do_kailash_gupta@murray-emard.org\",\n        \"gender\": \"male\",\n        \"status\": \"active\"\n    },\n    {\n        \"id\": 98,\n        \"name\": \"Kailash Singh DVM\",\n        \"email\": \"singh_kailash_dvm@kling-green.name\",\n        \"gender\": \"female\",\n        \"status\": \"active\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "create_post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "{{bodyComments1}}",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "{{title1}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/{{kaiID}}/posts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{kaiID}}",
+						"posts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create_post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "{{bodyComments1}}",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "{{title1}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/{{kaiID}}/posts",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"{{kaiID}}",
+								"posts"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 24 May 2022 07:50:25 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/posts/1623"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"92e17f00cfd2ebd55dd923c53b7a775a\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "047e6499-dc6b-4009-ae20-e217faa85b46"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.021608"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1623,\n    \"user_id\": 5050,\n    \"title\": \"Robotframework -> test a top part of web page\",\n    \"body\": \"it was always there, before people lived and named it, before the first seed sprouted.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "new_user_to_comment_the_post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name3}}",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{email3}}",
+							"type": "text"
+						},
+						{
+							"key": "gender",
+							"value": "{{genderFemale}}",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "{{statusActive}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "new_user_to_comment_the_post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{name3}}",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email3}}",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "{{genderFemale}}",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "{{statusActive}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 24 May 2022 08:01:55 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/users/5219"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e00b94a2f8a6f675c4a113b6dccb9e7a\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "6d74f4c2-6f17-408f-860f-d0953744b952"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.032662"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 5219,\n    \"name\": \"Klara\",\n    \"email\": \"klara@email.com\",\n    \"gender\": \"female\",\n    \"status\": \"active\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add_comment_to_the_post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"name\": \"{{name3}}\",\r\n    \"email\": \"{{email3}}\",\r\n    \"body\": \"Hey Ladislav, you should learn how to write posts\",\r\n    \r\n    \"post_id\": \"{{postID}}\"\r\n}\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/posts/1623/comments",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts",
+						"1623",
+						"comments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add_comment_to_the_post",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"name\": \"{{name3}}\",\r\n    \"email\": \"{{email3}}\",\r\n    \"body\": \"Hey Ladislav, you should learn how to write posts\",\r\n    \r\n    \"post_id\": \"{{postID}}\"\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/posts/1623/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"posts",
+								"1623",
+								"comments"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 24 May 2022 11:00:47 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/comments/1600"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5e3b68794bbceb2f0ca215762f33ebc2\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "da6c3eb1-2f1b-446f-ac6f-7387656f73f8"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.025755"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1600,\n    \"post_id\": 1623,\n    \"name\": \"Klara\",\n    \"email\": \"klara@email.com\",\n    \"body\": \"Hey Ladislav, you should learn how to write posts\"\n}"
+				}
+			]
+		},
+		{
+			"name": "check_if_user_added_comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"responseJSON = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Check if body contains any comment\", () => {\r",
+							"    pm.expect(responseJSON.body).to.not.equal(\"\")\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseURL}}/posts/{{postID}}/comments?name=Klara&id={{commentID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts",
+						"{{postID}}",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Klara"
+						},
+						{
+							"key": "id",
+							"value": "{{commentID}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "check_if_user_added_comment",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseURL}}/posts/{{postID}}/comments?name=Klara&id={{commentID}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"posts",
+								"{{postID}}",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Klara"
+								},
+								{
+									"key": "id",
+									"value": "{{commentID}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 24 May 2022 11:28:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Total",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Pages",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Page",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Limit",
+							"value": "20"
+						},
+						{
+							"key": "X-Links-Previous",
+							"value": ""
+						},
+						{
+							"key": "X-Links-Current",
+							"value": "https://gorest.co.in/public/v2/comments?page=1"
+						},
+						{
+							"key": "X-Links-Next",
+							"value": ""
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f030d4340a2f7414a57cbdde89010c69\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_gorest_session=f1gRXDL4CNQlau00Yai%2FDFspvxVC8j%2B%2FCWr7ngIJXgu9Zg5j%2FScOCrHlfPDvQevDb5NKdsorQrRMl9W4qQw78fPOwgK4FKoe0JmpDotShT8fshbKQ%2BbxN96%2BKEFsMe7UmQa%2F%2FnfsP1F1reVOsLmI9C2X5xomf94bs3vXkwFngUo9X1D%2FTrzMLoAZ44ZvOB9enWqu3mYUycTKoTLtquZB50BoPKYqUg9NuDe5CTJ34vuie8Vc%2F96YL8QQAosoHOgzct05oYk9axAfF5zut19jpbYuZfE79ZA%3D--CETf5MWIzOs3j37N--Nw1u0iGzXQ0odu151rVMdQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "fa133eba-d284-4bfe-bd4a-be3dc53e6dc9"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.025391"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1600,\n        \"post_id\": 1623,\n        \"name\": \"Klara\",\n        \"email\": \"klara@email.com\",\n        \"body\": \"Hey Ladislav, you should learn how to write posts\"\n    }\n]"
 				}
 			]
 		},
@@ -1157,13 +1771,13 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "{{baseURL}}/posts/100?id={{commentID}}",
+					"raw": "{{baseURL}}/posts/{{postID}}?id={{commentID}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"posts",
-						"100"
+						"{{postID}}"
 					],
 					"query": [
 						{
@@ -1184,13 +1798,13 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{baseURL}}/posts/100?id={{commentID}}",
+							"raw": "{{baseURL}}/posts/{{postID}}?id={{commentID}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"posts",
-								"100"
+								"{{postID}}"
 							],
 							"query": [
 								{
@@ -1210,7 +1824,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 18 May 2022 12:47:58 GMT"
+							"value": "Tue, 24 May 2022 11:47:09 GMT"
 						},
 						{
 							"key": "Connection",
@@ -1258,15 +1872,15 @@
 						},
 						{
 							"key": "Set-Cookie",
-							"value": "_gorest_session=mblndl18TxjpyMFhAwvOIXzWKNTCxCp7CadFnPHPOCi%2BtnWtKK9dIvOuMCG1ap7eP8SF9POpY5Bvqp%2BSG2r9tc4pxj4n2jQCJLUI7%2BNXuUOzp7BKsv%2FMKnsPOFS09%2F%2FlKDJ0k%2BkZXj919cmA1cdmDDsHNTpmnTn4vPxpPheyYjATzHoHriNBfN27e0kwH5qH5S3DhRVghbNW0%2FAQwLPHSOlavQlv8Tk09FpdNAsKCNP6cC6m2pd2qvsM5kP%2FWy54QkNOPTI%2F74uhI5V6auIq6KtKvyt%2Bhxk%3D--b16sVjroXWZNCitW--%2FRr1SF75Hmet9xtC5y4NSg%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+							"value": "_gorest_session=kUmdxtlevI%2FloklraaXDq2xMQRWpPFVu31nV7%2Bs32L3esRTuFcMz1DuKjMa16%2F0BlzCDgRzKO6J4vp0hmnatvNzebXFgAXWFn%2FIhKbI9nDdevOFpKhK%2FX7%2B4oYFeZlVJl%2BsJnvGRkKWfgp2YH%2Bqx3evWIRz4xiNgftap2NNQa%2FPWCWXZBOba2v2oQdB1maCjkNIyZ9eKmh79yGjQracNjBFgc2%2BbqmKRUR6LzzdZclZBYdpUe32TPZKfJr%2FPdSGiFatEu%2FVtnNdPdyZ63gDcSF%2BM%2FgDhJqo%3D--3%2Fk8I3%2B5LZWH7Koh--FAi9%2Bg7RDn3phlhy1HRDEw%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
 						},
 						{
 							"key": "X-Request-Id",
-							"value": "06f049d2-ea2c-4e51-9527-46d54aa44dfd"
+							"value": "4f695efb-90e8-48bb-9bb8-8600afd03120"
 						},
 						{
 							"key": "X-Runtime",
-							"value": "0.055288"
+							"value": "0.029110"
 						},
 						{
 							"key": "Strict-Transport-Security",
@@ -1291,8 +1905,9 @@
 						"exec": [
 							"const newResponseJson1 = pm.response.json();\r",
 							"\r",
-							"pm.test(\"Check if user does not exist\",()=>{\r",
-							"    pm.expect(newResponseJson1).not.to.have.property(\"christopher_juul86@email.com\");\r",
+							"pm.test(\"Check if user has any comments\", () => {\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.expect(newResponseJson1).not.to.have.property(\"Klara\");\r",
 							"})\r",
 							""
 						],
@@ -1311,13 +1926,13 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "{{baseURL}}/posts/100",
+					"raw": "{{baseURL}}/posts/{{postID}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"posts",
-						"100"
+						"{{postID}}"
 					]
 				}
 			},
@@ -1332,13 +1947,13 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{baseURL}}/posts/100",
+							"raw": "{{baseURL}}/posts/{{postID}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"posts",
-								"100"
+								"{{postID}}"
 							]
 						}
 					},
@@ -1352,7 +1967,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Wed, 18 May 2022 12:54:05 GMT"
+							"value": "Tue, 24 May 2022 11:55:34 GMT"
 						},
 						{
 							"key": "Content-Type",
@@ -1416,15 +2031,15 @@
 						},
 						{
 							"key": "Set-Cookie",
-							"value": "_gorest_session=KiAH5gbKB5XuEA4%2BbbeOZkJ5KILaLoqcKaj0ENVCYXlncyKLiH3zAL88pROcxsHpZHCquX9yTKSFZrjoi457BpsDq5JLaHJjBbmluvky4dDCSypcyvKc9o1Ix5Yfigf09YAPerAnPar2DjM2bV1v4wkEWsZO9aVDkWv9qoYxtt1ke7CXaD9l4zXvdCygt83bGP84QiquiYWwhCFTqSyvYTD%2FGtoM%2FbIgo01zTZ8wqovmyWG0EczdM%2BmehuX8kkJM7%2FfAQd1%2BCq4PC7uuk9352jqoclFyev4%3D--BqyBmEOR6HUH6%2F4W--naIEK%2Bb6%2F5hhuLuUyxc8PQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+							"value": "_gorest_session=CxO8qHaPdI9OgKOmVjxdS4PSpI%2B4qSo6HGMwZH3rQOeNZY9bOKWaNPMjtSa3Mp2cjetN%2FzpNk2kjQUhDTEV5fmc1IwzLAlujWRvrxUTGnOtI%2BwGcHXwrxJp%2BVnqQauO0ejqPd%2F5PdvgOp6vbiMHVaVZ3s%2F6xDBpc9MIegcKfN1KXMYBNGf5StB7ILsSZQOnWqjkeT%2FBu%2FTe21loqnymXJSKxm2pEPQqQooD%2BhRtO43njmyQ5CgiBlzyl%2Bab5rASjTGI6f1hhiPsSmf%2BLozsV6jkgF2WRE7Q%3D--bi2PZYpTgtAMAkxo--9xnAgs1JxZtRbdX1LDY81w%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
 						},
 						{
 							"key": "X-Request-Id",
-							"value": "5786873f-0503-40f5-82e9-41846791dc5f"
+							"value": "ace499c5-a78d-4901-b5aa-aa1679d034d6"
 						},
 						{
 							"key": "X-Runtime",
-							"value": "0.027116"
+							"value": "0.015489"
 						},
 						{
 							"key": "Strict-Transport-Security",
@@ -1437,6 +2052,393 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"message\": \"Resource not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add_todo_list_to_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "{{kaiID}}",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "{{title1}}",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "{{todoStatus2}}",
+							"type": "text"
+						},
+						{
+							"key": "due_on",
+							"value": "{{dueOn}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/{{kaiID}}/todos",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{kaiID}}",
+						"todos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add_todo_list_to_user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "{{kaiID}}",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "{{title1}}",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "{{todoStatus2}}",
+									"type": "text"
+								},
+								{
+									"key": "due_on",
+									"value": "{{dueOn}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/{{kaiID}}/todos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"{{kaiID}}",
+								"todos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 24 May 2022 11:59:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/todos/1638"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"411959b8ca15de732177a923d96b1071\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_gorest_session=hgU%2BfHzpiz4tQEJQKodywc5syO8ACby7CTzOHsvZiDnCxzwCIo%2FbyYBftQ76y1mITooGedLX%2BJiOyevsxCvosmZN8X6AxpuwIlwlC6HpWHy294nndE7Lh4iB2QV8TT8Avjp06YJG5%2BbNoWQdvb0w7ZtUhSjDxE%2BeG9uh%2BsWiRSIWt9HJdtQ8vF5IdgTY3RNTElAhGAAM%2Bdc6G7icC6zWQCeWPaRHo7kiYYW05XYRkUCDdL59Ay1oqCoOGZpWoTlxE6chU0XLi9g3z2MjX%2B12DJ3X1jVD6ZU%3D--wiUmw6fWS42tXPeb--ubhXgiIDYcblCl3yetxhpg%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "dae0cf24-b292-4632-ad66-fc7a0b30006c"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.025083"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1638,\n    \"user_id\": 5050,\n    \"title\": \"Robotframework -> test a top part of web page\",\n    \"due_on\": \"2022-06-30T13:10:00.000+05:30\",\n    \"status\": \"pending\"\n}"
+				}
+			]
+		},
+		{
+			"name": "check_if_todo_list_has_been_added",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check if todo list has been created\", () => {\r",
+							"    if(pm.expect(pm.response.text()).to.include(1638) == true){\r",
+							"        console.log(\"True\");\r",
+							"    }\r",
+							"    else{\r",
+							"        console.log(\"False\");\r",
+							"    }\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/users/{{kaiID}}/todos?user_id={{kaiID}}&due_on={{dueOn}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{kaiID}}",
+						"todos"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "{{kaiID}}"
+						},
+						{
+							"key": "due_on",
+							"value": "{{dueOn}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "check_if_todo_list_has_been_added",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/{{kaiID}}/todos?user_id={{kaiID}}&due_on={{dueOn}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"{{kaiID}}",
+								"todos"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{kaiID}}"
+								},
+								{
+									"key": "due_on",
+									"value": "{{dueOn}}"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 24 May 2022 12:01:59 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-RateLimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Total",
+							"value": "2"
+						},
+						{
+							"key": "X-Pagination-Pages",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Page",
+							"value": "1"
+						},
+						{
+							"key": "X-Pagination-Limit",
+							"value": "20"
+						},
+						{
+							"key": "X-Links-Previous",
+							"value": ""
+						},
+						{
+							"key": "X-Links-Current",
+							"value": "https://gorest.co.in/public/v2/todos?page=1"
+						},
+						{
+							"key": "X-Links-Next",
+							"value": "https://gorest.co.in/public/v2/todos?page=2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"eddd8cc0477d5e59249706284f270f19\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_gorest_session=z2PH4DjCkFcr1cSjPSM5RG4mI9c8EmHXMNvyUZ7UkSC2UpxuCUpHuo2vFjOX3Ze3g06J30swZafWssFCLEYgX0%2BJ5sy%2FNcvZI6qMVcNE9lS7W51g589B2q3gYt3cCxHcpiz%2BIByfdAmy2axtYEsXKlWKOqM7Ovag%2FTVaEy25Q%2B3EKoIX3TT%2B8wQQWu%2BJJ3AvZt0ypA5fT6I9c%2BW0%2F3LbfMlhIDEbnBSqKxsTBwbGAHZSh7EVHx20If36H75His%2BDBFQJSpYgE9xmA4j8F7RGjQ81CKnIAXk%3D--vYOr0lPMvw%2B2ui%2FA--ynrFsnwILJx9MPYdjNnjEQ%3D%3D; path=/; secure; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "2b0a8567-2f10-4334-b6f7-07fe843c7a6f"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.027578"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1638,\n        \"user_id\": 5050,\n        \"title\": \"Robotframework -> test a top part of web page\",\n        \"due_on\": \"2022-06-30T13:10:00.000+05:30\",\n        \"status\": \"pending\"\n    },\n    {\n        \"id\": 1637,\n        \"user_id\": 5050,\n        \"title\": \"Robotframework -> test a top part of web page\",\n        \"due_on\": \"2022-06-30T13:10:00.000+05:30\",\n        \"status\": \"completed\"\n    }\n]"
 				}
 			]
 		}
@@ -1484,12 +2486,12 @@
 		},
 		{
 			"key": "kaiID",
-			"value": "4298",
+			"value": "5050",
 			"type": "string"
 		},
 		{
 			"key": "email",
-			"value": "test789@email.com",
+			"value": "test7899@email.com",
 			"type": "string"
 		},
 		{
@@ -1517,28 +2519,68 @@
 			"value": "https://gorest.co.in/public/v2"
 		},
 		{
-			"key": "nameInComments1",
-			"value": "Christopher Juul",
-			"type": "string"
-		},
-		{
-			"key": "emailComments1",
-			"value": "christopher_juul86@email.com",
-			"type": "string"
-		},
-		{
 			"key": "bodyComments1",
 			"value": "it was always there, before people lived and named it, before the first seed sprouted.",
 			"type": "string"
 		},
 		{
 			"key": "commentID",
-			"value": "1380",
+			"value": "1600",
 			"type": "string"
 		},
 		{
-			"key": "postCommentID",
-			"value": "100",
+			"key": "todoStatus1",
+			"value": "completed",
+			"type": "string"
+		},
+		{
+			"key": "todoStatus2",
+			"value": "pending",
+			"type": "string"
+		},
+		{
+			"key": "title1",
+			"value": "Robotframework -> test a top part of web page",
+			"type": "string"
+		},
+		{
+			"key": "title2",
+			"value": "\\n",
+			"type": "string"
+		},
+		{
+			"key": "dueOn",
+			"value": "2022-06-30T13:10:00.000+05:30",
+			"type": "string"
+		},
+		{
+			"key": "name3",
+			"value": "Klara",
+			"type": "string"
+		},
+		{
+			"key": "email3",
+			"value": "klara@email.com",
+			"type": "string"
+		},
+		{
+			"key": "klaraID",
+			"value": "5219",
+			"type": "string"
+		},
+		{
+			"key": "postID",
+			"value": "1623",
+			"type": "string"
+		},
+		{
+			"key": "todoID",
+			"value": "1637",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "d478057fe9d209bb14f80d158787d3ffea202a4340ce2478446763e674456b01",
 			"type": "string"
 		}
 	]
